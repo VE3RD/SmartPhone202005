@@ -7,15 +7,14 @@ set -o errexit
 set -o pipefail
 sudo mount -o remount,rw /
 echo "Activating Profile 2"
-fromfile="/usr/local/etc/Nextion_Support/profiles.txt"
+fromfile="/home/pi-star/SmartPhone/profiles.txt"
 
 
 pnum=$(echo "$1" | sed 's/^0*//')
 echo "Profile $1 - 1" > /home/pi-star/ActivateProfile.txt
 
 	echo "Starting ClearAllModes" >> /home/pi-star/ActivateProfile.txt
-	sudo /usr/local/etc/Nextion_Support/clearallmodes.sh
-
+	sudo /home/pi-star/SmartPhone/clearallmodes.sh
 	echo "Reading Default Profile 0"  >> /home/pi-star/ActivateProfile.txt
 
                 m1=$(sed -nr "/^\[Profile 2\]/ { :l /^RXOffset[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)

@@ -12,8 +12,7 @@ declare -i test
 
 test=0
 chmod 766 /etc/mmdvmhost
-
-fromfile="/usr/local/etc/Nextion_Support/profiles.txt"
+fromfile="/home/pi-star/SmartPhone/profiles.txt"
 t0="/etc/mmdvmhost"
 t1="/etc/mmdvmhost.tmp"
 
@@ -31,7 +30,7 @@ function preprocess
 {
 	echo "Starting Preprocess Function $pnum" >> /home/pi-star/ActivateProfile.txt
 	echo "Starting ClearAllModes" >> /home/pi-star/ActivateProfile.txt
-	sudo /usr/local/etc/Nextion_Support/clearallmodes.sh
+	sudo /home/pi-star/SmartPhone/clearallmodes.sh
 	echo "Clearing Modes Complete" >> /home/pi-star/ActivateProfile.txt
 	echo "Pre-Process Function Complete" >> /home/pi-star/ActivateProfile.txt
 sudo cp /etc/mmdvmhost /etc/mmdvmhost.tmp

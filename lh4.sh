@@ -53,8 +53,9 @@ exit
 f1=$(ls -tr /var/log/pi-star/MMDVM* | tail -1)
 #echo "File: $f1"
 list1=$(sudo sed -n '/received network voice header from/p' $f1 | sed 's/,//g' | sort -k2,3 | tail -1)
+#echo "$list1"
 list2=$(sudo sed -n '/received network end of voice transmission from/p' $f1 | sed 's/,//g' | sort -k2,3 | tail -1)
-
+#echo "$list2"
 list3=$(echo "$list1" | awk '{print substr($2,6,5),substr($3,0,6),$12,$15}')
 list4=$(echo "$list2" | awk '{print substr($2,6,5),substr($3,0,6),$14,$6,$17,$18,$20}')
 #echo "$list3"
@@ -86,10 +87,10 @@ else
 		TS=$(echo "$list4" | awk '{print $5}')
 		Sec=$(echo "$list4" | awk '{print $6}')
 		PLoss=$(echo "$list4" | awk '{print $7}')
-		printf "2\n$call $name ID:$did TG:$TG TS:$TS Dur:$Sec PLoss:$PLoss"
+		printf "2\n$call $name\nID:$did TG:$TG TS:$TS Dur:$Sec PLoss:$PLoss"
 	else
 		tg1=$(echo "$list3" | awk '{print $4}')
-		printf "1\n$call $name ID:$did TG:$tg1"
+		printf "1\n$call $name\nID:$did TG:$tg1"
 	fi
 fi
 
