@@ -69,8 +69,6 @@ call="$call1"
 
 	name=$(sudo sed -n "/$call1/p" /usr/local/etc/DMRIds.dat | sed -E "s/[[:space:]]+/|/g" | cut -d'|' -f3 | head -1)
 	did=$(sudo sed -n "/$call1/p" /usr/local/etc/DMRIds.dat | sed -E "s/[[:space:]]+/|/g" | head -1 | cut -d'|' -f1)
-
-if [ "$1" == "2" ]; then
         DT=$(echo "$list4" | awk '{print $1}')
 	TM=$(echo "$list4" | awk '{print $2}')
 
@@ -78,19 +76,19 @@ if [ "$1" == "2" ]; then
         TS=$(echo "$list4" | awk '{print $4}')
         Sec=$(echo "$list4" | awk '{print $6}')
         PLoss=$(echo "$list4" | awk '{print $7}')
-        printf "%s %s %s %s %s  ID:%s \nTG:%s TS:%s Dur:%s PLoss:%s \n" "3" $DT $TM $call $name $did $TG $TS $Sec $PLoss
+
+if [ "$1" == "2" ]; then
+        printf "%s %s %s %s ID:%s \nTG:%s TS:%s Dur:%s PLoss:%s \n" "3" $DT $TM $call $name $did $TG $TS $Sec $PLoss
 #        printf "3\n$DT $TM $call $name ID:$did TG:$TG"
 
 else
 	if [ "$call1" == "$call2" ]; then
-		TG=$(echo "$list4" | awk '{print $4}')
-		TS=$(echo "$list4" | awk '{print $5}')
-		Sec=$(echo "$list4" | awk '{print $6}')
-		PLoss=$(echo "$list4" | awk '{print $7}')
-		printf "2\n$call $name\nID:$did TG:$TG TS:$TS Dur:$Sec PLoss:$PLoss"
+#		printf "2\n$call $name\nID:$did TG:$TG TS:$TS Dur:$Sec PLoss:$PLoss"
+		printf "2\n%s %s \nID:%s TG:%s TS:%s Dur:%s PLoss:%s \n" $call $name $did $TG $TS $Sec $PLoss
 	else
 		tg1=$(echo "$list3" | awk '{print $4}')
-		printf "1\n$call $name\nID:$did TG:$tg1"
+#		printf "1\n$call $name\nID:$did TG:$tg1"
+		printf "1\n%s %s \nID:%s TG:%s\n" $call $name $did $tg1
 	fi
 fi
 
