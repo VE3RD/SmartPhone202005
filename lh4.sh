@@ -78,17 +78,17 @@ call="$call1"
         PLoss=$(echo "$list4" | awk '{print $7}')
 
 if [ "$1" == "2" ]; then
-        printf "%s %s %s %s ID:%s \nTG:%s TS:%s Dur:%s PLoss:%s \n" "3" $DT $TM $call $name $did $TG $TS $Sec $PLoss
+        printf "3\n%s %s %s %s \nID:%s TG:%s TS:%s \nDur:%s PLoss:%s \n" "$DT" "$TM" "$call" "$name" "$did" "$TG" "$TS" "$Sec" "$PLoss"
 #        printf "3\n$DT $TM $call $name ID:$did TG:$TG"
 
 else
 	if [ "$call1" == "$call2" ]; then
 #		printf "2\n$call $name\nID:$did TG:$TG TS:$TS Dur:$Sec PLoss:$PLoss"
-		printf "2\n%s %s \nID:%s TG:%s TS:%s Dur:%s PLoss:%s \n" $call $name $did $TG $TS $Sec $PLoss
+		printf "2\n%s %s \nID:%s TG:%s TS:%s Dur:%s PLoss:%s \n" "$call" "$name" "$did" "$TG" "$TS" "$Sec" "$PLoss"
 	else
 		tg1=$(echo "$list3" | awk '{print $4}')
 #		printf "1\n$call $name\nID:$did TG:$tg1"
-		printf "1\n%s %s \nID:%s TG:%s\n" $call $name $did $tg1
+		printf "1\n%s %s\nID:%s TG:%s\n" "$call" "$name" "$did" "$tg1"
 	fi
 fi
 

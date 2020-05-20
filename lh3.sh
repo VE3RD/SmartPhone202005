@@ -85,22 +85,11 @@ n=0
 echo " Test 1a = $1"  >> /home/pi-star/lh2_start.txt
 
 
-######  Mode 1
 if [ "$2" == "1" ]; then
 		echo "Check OK 1 = $2" >> /home/pi-star/lh2_start.txt 
 
 	if [ "$1" == "1" ]; then
-		cat /home/pi-star/lhlog.txt | sed -n '1,10p;11q' | awk '{printf "%5s %5s %6s %1s %6s %5s %3s \n", $1, $2, $4, $3, $5, $6, $7}'
-	fi
-
-	if [ "$1" == "2" ]; then
-		cat /home/pi-star/lhlog.txt | sed -n '7,12p;13q' | awk '{printf "%5s %5s %-6s %1s %-6s %4s %4s\n", $1, $2, $4, $3, $5, $6, $7}'
-	fi
-	if [ "$1" == "3" ]; then
-		cat /home/pi-star/lhlog.txt | sed -n '13,18p;19q' | awk '{printf "%5s %5s %-6s %1s %-6s %4s %4s\n", $1, $2, $4, $3, $5, $6, $7}' 
-	fi
-	if [ "$1" == "4" ]; then
-		cat /home/pi-star/lhlog.txt | sed -n '19,24p;25q' | awk '{printf "%5s %5s %-6s %1s %-6s %4s %4s\n", $1, $2, $4, $3, $5, $6, $7}'
+		cat /home/pi-star/lhlog.txt | sed -n '1,15p;16q' | awk '{printf "%5s %5s %8s %2s %7s %5s %3s \n", $1, $2, $4, $3, $5, $6, $7}'
 	fi
 fi
 ######  Mode 2
@@ -111,7 +100,6 @@ if [ "$2" == "2" ]; then
 	if [ "$1" == "1" ]; then
 		list9=$(cat /home/pi-star/lhlog.txt | sed -n '1,6p;7q' | awk '{print $1, $2, $4, $5}' )
 	fi
-
 	if [ "$1" == "2" ]; then
 		list9=$(cat /home/pi-star/lhlog.txt | sed -n '7,12p;13q' | awk '{print $1, $2, $4,$5}') 
 	fi
