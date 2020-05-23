@@ -37,19 +37,19 @@ list4=$(echo "$MList" | tail -1 | awk '{print substr($2,6,5),substr($3,0,6),$14,
 
 if [ "$mode" == "RF1" ]; then
 		call=$(echo "$MList" | awk '{print $12}')
-	TG=$(echo "$list3" | awk '{print $4}')
+		TG=$(echo "$list3" | awk '{print $4}')
 
 elif [ "$mode" == "RF2" ]; then
 		call=$(echo "$MList" | awk '{print $14}')
-	TG=$(echo "$list4" | awk '{print $5}')
+		TG=$(echo "$list4" | awk '{print $5}')
 
 elif [ "$mode" == "Net1" ]; then
 		call=$(echo "$MList" | awk '{print $12}')
-	TG=$(echo "$list3" | awk '{print $4}')
+		TG=$(echo "$list3" | awk '{print $4}')
 
 elif [ "$mode" == "Net2" ]; then
 		call=$(echo "$MList" | awk '{print $14}')
-	TG=$(echo "$list4" | awk '{print $5}')
+		TG=$(echo "$list4" | awk '{print $5}')
 
 fi
 
@@ -70,9 +70,9 @@ name=$(echo "$tLine" | cut -d',' -f3)
         TS=$(echo "$list4" | awk '{print $4}')
         Sec=$(echo "$list4" | awk '{print $6}')
         PLoss=$(echo "$list4" | awk '{print $7}')
-
 	ber=$(echo "$list4" | awk '{print $8}')
 	rssi=$(echo "$list4" | awk '{print $9}')
+
 
 
 if [ "$1" == "2" ]; then
@@ -83,11 +83,11 @@ else
 	if [ "$mode" = "Net1" ]; then
 			printf "1\n%s %s\nID:%s TG:%s TS:%s\n%s %s %s\n" "$call" "$name" "$did" "$TG" "$TS" "$city" "$prov" "$cntry"
 	elif [ "$mode" = "Net2" ]; then
-			printf "2\n%s %s ID:%s \nTG:%s \nTS:%s Dur:%s PLoss:%s \n" "$call" "$name" "$did" "$TG" "$TS" "$Sec" "$PLoss"
-	elif [ "$mode" = "NetRF1" ]; then
-			printf "1\n$%s %s\nID:%s TG:%s TS:%s\n" "$call" "$name" "$did" "$TG" "$TS"
-	elif [ "$mode" = "NetRF2" ]; then
-			printf "2\n%s %s \nID:%s TG:%s TS:%s Dur:%s PLoss:%s \n" "$call" "$name" "$did" "$TG" "$TS" "$Sec" "$PLoss"
+			printf "2\n%s %s ID:%s \nTG:%s TS:%s Dur:%s PLoss:%s \n" "$call" "$name" "$did" "$TG" "$TS" "$Sec" "$PLoss"
+	elif [ "$mode" = "RF1" ]; then
+			printf "1\n%s %s\nID:%s TG:%s TS:%s\n" "$call" "$name" "$did" "$TG" "$TS"
+	elif [ "$mode" = "RF2" ]; then
+			printf "2\n%s %s ID:%s \nTG:%s TS:%s Dur:%s Ber:%s Rssi:%s\n" "$call" "$name" "$did" "$TG" "$TS" "$Sec" "$ber" "$rssi"
 
 	else
 		# [ "$mode" = "Net1" ]; then
