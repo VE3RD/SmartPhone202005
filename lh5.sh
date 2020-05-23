@@ -32,45 +32,35 @@ if [ "$TG1" == "TG" ]; then
 elif [ "$TG2" == "TG" ]; then
   mode="$Modes""2"
 fi
-list3=$(echo "$MList" | head -1 | awk '{print substr($2,6,5),substr($3,0,6),$12,$15}')
-list4=$(echo "$MList" | tail -1 | awk '{print substr($2,6,5),substr($3,0,6),$14,$6,$17,$18,$20,$21,$23}')
-
 if [ "$mode" == "RF1" ]; then
 		call=$(echo "$MList" | awk '{print $12}')
-	TG=$(echo "$list3" | awk '{print $4}')
 
 elif [ "$mode" == "RF2" ]; then
 		call=$(echo "$MList" | awk '{print $14}')
-	TG=$(echo "$list4" | awk '{print $5}')
 
 elif [ "$mode" == "Net1" ]; then
 		call=$(echo "$MList" | awk '{print $12}')
-	TG=$(echo "$list3" | awk '{print $4}')
 
 elif [ "$mode" == "Net2" ]; then
 		call=$(echo "$MList" | awk '{print $14}')
-	TG=$(echo "$list4" | awk '{print $5}')
-
 fi
 
 
-tLine=$(sudo sed -n "/$call/p" /usr/local/etc/stripped.csv  | head -1)
-city=$(echo "$tLine" | cut -d',' -f4)
-prov=$(echo "$tLine" | cut -d',' -f5)
-cntry=$(echo "$tLine" | cut -d',' -f7)
-name=$(echo "$tLine" | cut -d',' -f3)
-did=$(echo "$tLine" | cut -d',' -f1)
-name=$(echo "$tLine" | cut -d',' -f3)
-#echo "$cntry"
-#	name=$(sudo sed -n "/$call/p" /usr/local/etc/stripped.csv | cut -d',' -f3 | head -1)
-#	did=$(sudo sed -n "/$call/p" /usr/local/etc/stripped.csv | head -1 | cut -d',' -f1)
+list3=$(echo "$MList" | head -1 | awk '{print substr($2,6,5),substr($3,0,6),$12,$15}')
+list4=$(echo "$MList" | tail -1 | awk '{print substr($2,6,5),substr($3,0,6),$14,$6,$17,$18,$20,$21,$23}')
+
+call1=$(echo "$list3" | awk '{print $3}')
+call2=$(echo "$list4" | awk '{print $3}')
+
+	name=$(sudo sed -n "/$call/p" /usr/local/etc/stripped.csv | cut -d',' -f3 | head -1)
+	did=$(sudo sed -n "/$call/p" /usr/local/etc/stripped.csv | head -1 | cut -d',' -f1)
         DT=$(echo "$list4" | awk '{print $1}')
 	TM=$(echo "$list4" | awk '{print $2}')
 
+	TG=$(echo "$list4" | awk '{print $5}')
         TS=$(echo "$list4" | awk '{print $4}')
         Sec=$(echo "$list4" | awk '{print $6}')
         PLoss=$(echo "$list4" | awk '{print $7}')
-
 	ber=$(echo "$list4" | awk '{print $8}')
 	rssi=$(echo "$list4" | awk '{print $9}')
 
@@ -81,13 +71,14 @@ if [ "$1" == "2" ]; then
 
 else
 	if [ "$mode" = "Net1" ]; then
-			printf "1\n%s %s\nID:%s TG:%s TS:%s\n%s %s %s\n" "$call" "$name" "$did" "$TG" "$TS" "$city" "$prov" "$cntry"
+			tg1=$(echo "$list3" | awk '{print $4}')
+			printf "1\n%s %s\nID:%s TG:%s\n" "$call" "$name" "$did" "$tg1"
 	elif [ "$mode" = "Net2" ]; then
-			printf "2\n%s %s ID:%s \nTG:%s \nTS:%s Dur:%s PLoss:%s \n" "$call" "$name" "$did" "$TG" "$TS" "$Sec" "$PLoss"
-	elif [ "$mode" = "NetRF1" ]; then
-			printf "1\n$%s %s\nID:%s TG:%s TS:%s\n" "$call" "$name" "$did" "$TG" "$TS"
-	elif [ "$mode" = "NetRF2" ]; then
+
 			printf "2\n%s %s \nID:%s TG:%s TS:%s Dur:%s PLoss:%s \n" "$call" "$name" "$did" "$TG" "$TS" "$Sec" "$PLoss"
+	elif [ "$mode" = "NetRF1" ]; then
+
+			printf "2\n$call $name\nID:$did TG:$TG TS:$TS Dur:$Sec PLoss:$PLoss"
 
 	else
 		# [ "$mode" = "Net1" ]; then
