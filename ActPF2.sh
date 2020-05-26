@@ -1,6 +1,6 @@
 #!/bin/bash
 ############################################################
-#  Activate  Profile 1                                     #
+#  Activate  Profile 2                                     #
 #  VE3RD                                      2020/05/17   #
 ############################################################
 set -o errexit
@@ -32,10 +32,9 @@ echo "Profile $1 - 1" > /home/pi-star/ActivateProfile.txt
                 m13=$(sed -nr "/^\[Profile 0\]/ { :l /^ExtId[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
 	echo "Reading Default Profile 0 Complete"  >> /home/pi-star/ActivateProfile.txt
 
-#	mt=$(sudo sed -n '/^[^#]*'"$m8a"'/p' /usr/local/etc/DMR_Hosts.txt | sed -E "s/[[:space:]]+/|/g")
-#       	mt=$(sudo sed -n "/\t$m8a/p" /usr/local/etc/DMR_Hosts.txt |sed -E "s/[[:space:]]+/|/g")
-
-#	m8=$( echo "$mt" | cut -d'|' -f3)
+if [ -f /home/pi-star/pad.txt ]; then
+	m8=$(head -n 1 /home/pi-star/pad.txt)
+fi
 
 	sudo mount -o remount,rw /
 
