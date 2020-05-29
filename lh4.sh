@@ -54,7 +54,7 @@ elif [ "$mode" == "Net2" ]; then
 fi
 
 
-tLine=$(sudo sed -n "/$call/p" /home/pi-star/user.csv  | head -1)
+tLine=$(sudo sed -n "/$call/p" /home/pi-star/SmartPhone/user.csv  | head -1)
 city=$(echo "$tLine" | cut -d',' -f4)
 prov=$(echo "$tLine" | cut -d',' -f5)
 cntry=$(echo "$tLine" | cut -d',' -f7)
