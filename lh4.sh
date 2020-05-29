@@ -54,7 +54,7 @@ elif [ "$mode" == "Net2" ]; then
 fi
 
 
-tLine=$(sudo sed -n "/$call/p" /usr/local/etc/stripped.csv  | head -1)
+tLine=$(sudo sed -n "/$call/p" /home/pi-star/user.csv  | head -1)
 city=$(echo "$tLine" | cut -d',' -f4)
 prov=$(echo "$tLine" | cut -d',' -f5)
 cntry=$(echo "$tLine" | cut -d',' -f7)
@@ -62,8 +62,6 @@ name=$(echo "$tLine" | cut -d',' -f3)
 did=$(echo "$tLine" | cut -d',' -f1)
 name=$(echo "$tLine" | cut -d',' -f3)
 #echo "$cntry"
-#	name=$(sudo sed -n "/$call/p" /usr/local/etc/stripped.csv | cut -d',' -f3 | head -1)
-#	did=$(sudo sed -n "/$call/p" /usr/local/etc/stripped.csv | head -1 | cut -d',' -f1)
         DT=$(echo "$list4" | awk '{print $1}')
 	TM=$(echo "$list4" | awk '{print $2}')
 

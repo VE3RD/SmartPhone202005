@@ -52,8 +52,8 @@ list4=$(echo "$MList" | tail -1 | awk '{print substr($2,6,5),substr($3,0,6),$14,
 call1=$(echo "$list3" | awk '{print $3}')
 call2=$(echo "$list4" | awk '{print $3}')
 
-	name=$(sudo sed -n "/$call/p" /usr/local/etc/stripped.csv | cut -d',' -f3 | head -1)
-	did=$(sudo sed -n "/$call/p" /usr/local/etc/stripped.csv | head -1 | cut -d',' -f1)
+	name=$(sudo sed -n "/$call/p" /home/pi-star/user.csv | cut -d',' -f3 | head -1)
+	did=$(sudo sed -n "/$call/p" /home/pi-star/user.csv | head -1 | cut -d',' -f1)
         DT=$(echo "$list4" | awk '{print $1}')
 	TM=$(echo "$list4" | awk '{print $2}')
 
