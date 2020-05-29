@@ -1,0 +1,28 @@
+#!/bin/bash
+############################################################
+#  Get Gateway Network Status  from /etc/dmrgateway        #
+#  $1 1-6 Select Mode to get status of                     #
+#                                                          #
+#  Returns a String                                        #
+#                                                          #
+#  VE3RD                                     2020-05-29    #
+############################################################
+set -o errexit
+set -o pipefail
+
+  n0=$(sed -nr "/^\[DMR Network\]/ { :l /^Address[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" /etc/mmdvmhost)
+if [ "$n0" == 192.168.0.1 ]; then
+ n0="1"
+else
+ n0="0"
+fi
+
+  n1=$(sed -nr "/^\[DMR Network 1\]/ { :l /^Enabled[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" /etc/dmrgateway)
+  n2=$(sed -nr "/^\[DMR Network 2\]/ { :l /^Enabled[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" /etc/dmrgateway)
+  n3=$(sed -nr "/^\[DMR Network 3\]/ { :l /^Enabled[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" /etc/dmrgateway)
+  n4=$(sed -nr "/^\[DMR Network 4\]/ { :l /^Enabled[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" /etc/dmrgateway)
+  n5=$(sed -nr "/^\[DMR Network 5\]/ { :l /^Enabled[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" /etc/dmrgateway)
+  printf "$n0\n$n1\n$n2\n$n3\n$n4\n$n5\n"
+
+
+
