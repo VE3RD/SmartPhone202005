@@ -55,12 +55,14 @@ fi
 
 
 tLine=$(sudo sed -n "/$call/p" /home/pi-star/SmartPhone/user.csv  | head -1)
-city=$(echo "$tLine" | cut -d',' -f4)
-prov=$(echo "$tLine" | cut -d',' -f5)
+
+city=$(echo "$tLine" | cut -d',' -f5)
+prov=$(echo "$tLine" | cut -d',' -f6)
 cntry=$(echo "$tLine" | cut -d',' -f7)
-name=$(echo "$tLine" | cut -d',' -f3)
+fname=$(echo "$tLine" | cut -d',' -f3)
+lname=$(echo "$tLine" | cut -d',' -f4)
 did=$(echo "$tLine" | cut -d',' -f1)
-name=$(echo "$tLine" | cut -d',' -f3)
+name="$fname $lname" 
 #echo "$cntry"
         DT=$(echo "$list4" | awk '{print $1}')
 	TM=$(echo "$list4" | awk '{print $2}')
@@ -79,7 +81,8 @@ if [ "$1" == "2" ]; then
 
 else
 	if [ "$mode" = "Net1" ]; then
-			printf "1\n%s %s\nID:%s TG:%s TS:%s\n%s %s %s\n" "$call" "$name" "$did" "$TG" "$TS" "$city" "$prov" "$cntry"
+#			printf "1\n%s %s\nID:%s TG:%s TS:%s\n%s %s %s\n" "$call" "$name" "$did" "$TG" "$TS" "$city" "$prov" "$cntry"
+			printf "1\n$call, $name \n$did, $TG, $TS, $city \n$prov, $cntry"
 	elif [ "$mode" = "Net2" ]; then
 			printf "2\n%s %s ID:%s \nTG:%s TS:%s Dur:%s PLoss:%s \n" "$call" "$name" "$did" "$TG" "$TS" "$Sec" "$PLoss"
 	elif [ "$mode" = "RF1" ]; then
