@@ -82,9 +82,10 @@ if [ "$1" == "2" ]; then
 else
 	if [ "$mode" = "Net1" ]; then
 #			printf "1\n%s %s\nID:%s TG:%s TS:%s\n%s %s %s\n" "$call" "$name" "$did" "$TG" "$TS" "$city" "$prov" "$cntry"
-			printf "1\n$call, $name \n$did, $TG, $TS, $city \n$prov, $cntry"
+			printf "1\n$call, $name \n$did, $TG, $TS, $city, \n$prov, $cntry"
 	elif [ "$mode" = "Net2" ]; then
-			printf "2\n%s %s ID:%s \n %s %s %s\nTG:%s TS:%s Dur:%s PLoss:%s \n" "$call" "$name" "$did" "$city" "$prov" "$cntry" "$TG" "$TS" "$Sec" "$PLoss"
+#			printf "2\n%s %s ID:%s \n %s %s %s\nTG:%s TS:%s Dur:%s PLoss:%s \n" "$call" "$name" "$did" "$city" "$prov" "$cntry" "$TG" "$TS" "$Sec" "$PLoss"
+			printf "2\n$call $name 	ID:$did,\n$city, $prov, $cntry, \n$DT, $TM: TG:$TG, TS:$TS, T:$Sec, PL:$PLoss"
 	elif [ "$mode" = "RF1" ]; then
 			printf "1\n%s %s\nID:%s TG:%s TS:%s\n" "$call" "$name" "$did" "$TG" "$TS"
 	elif [ "$mode" = "RF2" ]; then

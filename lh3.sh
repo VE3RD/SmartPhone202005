@@ -62,7 +62,7 @@ do
 	pl=$(echo "$line" | cut -d' ' -f7)
 
 #	line2=$(echo "$line $name $did" | awk '{printf  "%5s %.5s %6s %7s %6s %6s\n",$1,$2,$3,$6,$4,$7,"   "}')
-	printf  "%5s %.5s %6s %6s %2s %4s %4s\n" "$dt" "$tm" "$call" "$tg" "$ts" "$dur" "$pl"
+	printf  "%5s %.5s %-6s %6s %2s %4s %4s\n" "$dt" "$tm" "$call" "$tg" "$ts" "$dur" "$pl"
 #	echo "  $line2"
 	line3=${line2:0:37}
 	list4+="$line3"
@@ -83,21 +83,21 @@ list2=$(sudo sed -n '/received network end of voice transmission from/p' $f2 | s
 
 #echo "$f1" #Newest
 #echo "$f2"
-list3=$(echo "$list1" | awk '{print substr($2,6,5),substr($3,0,6),$14,$6,$17,$18,$20}' | sort -r -k3,3 -k1,2)
-list4=$(echo "$list2" | awk '{print substr($2,6,5),substr($3,0,6),$14,$6,$17,$18,$20}' | sort -r -k3,2 -k1,2)
+list3=$(echo "$list1" | awk '{print substr($2,6,5),substr($3,0,6),$14,$17,$6,$18,$20}' | sort -r -k3,3)
+list4=$(echo "$list2" | awk '{print substr($2,6,5),substr($3,0,6),$14,$17,$6,$18,$20}' | sort -r -k3,3)
 
 list1=""
 list2=""
 
-list6=$(echo "$list3" | awk '$3!=savestr {print $1,$2,$3,$4,$5,$6,$7; savestr=$3}' | sort  -k1,2 | tail -n 24 | sort -r -k1,2)
+list6=$(echo "$list3" | awk '$3!=savestr {print $1,$2,$3,$4,$5,$6,$7; savestr=$3}' | sort  -k1,2 | tail -n 24 )
 
 lcnt=$(echo "$list6" | wc -l)
 
 if [ $lcnt -lt 20 ]; then
-	list7=$(echo "$list4" | awk '$3!=savestr {print $1,$2,$3,$4,$5,$6,$7; savestr=$3}' | sort k1,2 | tail -n 24 | sort -r -k1,2)
+	list7=$(echo "$list4" | awk '$3!=savestr {print $1,$2,$3,$4,$5,$6,$7; savestr=$3}' | sort -k1,2  | tail -n 24 | sort -r -k1,2)
 	list6+="$list7"
 fi
-
+#echo "$list5"
 list3=""
 
 n=0 
@@ -108,11 +108,11 @@ if [ "$2" == "1" ]; then
 		echo "Check OK 1 = $2" >> /home/pi-star/lh2_start.txt 
 
 	if [ "$1" == "1" ]; then
-		list9=$(echo "$list6" | awk '{print $1, $2, $3, $4, $5, $6, $7,"\r"}' | sed -n '1,12p;13q')
+		list9=$(echo "$list6" | awk '{print $1, $2, $3, $4, $5, $6, $7,"\r"}' | sed -n '1,10p;11q')
 	#echo $list9"
 	fi 
 	if [ "$1" == "2" ]; then
-		list9=$(echo "$list6" | awk '{print $1, $2, $3, $4, $5, $6, $7,"\r"}' | sed -n '12,24p;25q')
+		list9=$(echo "$list6" | awk '{print $1, $2, $3, $4, $5, $6, $7,"\r"}' | sed -n '10,20p;21q')
 	echo #$list9"
 	fi 
 		domode1
