@@ -108,7 +108,7 @@ if [ "$2" == "1" ]; then
 		echo "Check OK 1 = $2" >> /home/pi-star/lh2_start.txt 
 
 	if [ "$1" == "1" ]; then
-		list9=$(echo "$list6" | awk '{print $1, $2, $3, $4, $5, $6, $7,"\r"}' | sed -n '1,10p;11q')
+		list9=$(echo "$list6" | awk '{print $1, $2, $3, $4, $5, $6, $7,"\r"}' | sed -n '1,6p;7q')
 	#echo $list9"
 	fi 
 	if [ "$1" == "2" ]; then

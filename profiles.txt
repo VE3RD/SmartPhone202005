@@ -28,7 +28,7 @@ Local=62035
 Password=passw0rd
 
 [Profile 2]
-Name=Prime_TGIF_Network
+Name=Prime_TGIF_Network1
 RXOffset=-400
 TXOffset=-400
 RXFrequency=445100000
@@ -43,21 +43,37 @@ Local=62035
 Password=passw0rd
 
 [Profile 3]
-Name=BM_3021
+Name=Prime_TGIF_Network2
 RXOffset=-400
 TXOffset=-400
 RXFrequency=445100000
 TXFrequency=445100000
 Callsign=VE3RD
 Id=302073304
-Mode=DMR
-Address=158.69.203.89
-StartupDstId=310
+Mode=TGIF
+Address=tgif.network
+StartupDstId=31665
 Port=62031
 Local=62035
-Password="passw0rd"
+Password=file
 
 [Profile 4]
+Name=MNet_Network
+RXOffset=-400
+TXOffset=-400
+RXFrequency=445100000
+TXFrequency=445100000
+Callsign=VE3RD
+Id=3020954
+Mode=MNet
+Address=mnet.hopto.org
+StartupDstId=31665
+Port=62031
+Local=62035
+Password=file
+
+
+[Profile 5]
 Name=DMRGateway
 RXOffset=-400
 TXOffset=-400
@@ -71,20 +87,20 @@ StartupDstId=31665
 Port=62031
 Password="Passp0rt"
 
-[Profile 5]
-Name=BARC-R
+[Profile 6]
+Name=MNet_Network
 RXOffset=-400
 TXOffset=-400
 RXFrequency=445100000
 TXFrequency=445100000
 Callsign=VE3RD
-Id=302073304
+Id=3020954
 Mode=YSF2DMR
-Address=tgif.network
-StartupDstId=3023
+Address=mnet.hopto.org
+StartupDstId=31665
 Port=62031
 Local=62037
-Password="passw0rd"
+Password=file
 
 [Profile 6]
 Name=DMR2YSF
@@ -121,7 +137,7 @@ TXFrequency=445100000
 Callsign=VEZ3RD
 Id=302048224
 Mode=YSF2DMR
-Address=prime.tgif.network
+Address=.tgif.network
 StartupDstId=31665
 Port=62031
 Password="passw0rd"
@@ -152,5 +168,20 @@ Mode=YSF2P25
 Address=tgif.network
 StartupDstId=10
 Port=62031
+Password="passw0rd"
+
+[Profile 13]
+Name=BM_3021
+RXOffset=-400
+TXOffset=-400
+RXFrequency=445100000
+TXFrequency=445100000
+Callsign=VE3RD
+Id=302073304
+Mode=DMR
+Address=158.69.203.89
+StartupDstId=310
+Port=62031
+Local=62035
 Password="passw0rd"
 

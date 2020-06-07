@@ -1,6 +1,6 @@
 #!/bin/bash
 ############################################################
-#  Activate  Profile                                       #
+#  Activate  Profile 8                                     #
 #  VE3RD                                      2019/11/18   #
 ############################################################
 set -o errexit
@@ -18,7 +18,7 @@ t1="/etc/mmdvmhost.tmp"
 
 
 pnum=$(echo "$1" | sed 's/^0*//')
-echo "Profile $1 - $pnum" > /home/pi-star/ActivateProfile.txt
+echo "Profile $1 - 8" > /home/pi-star/ActivateProfile.txt
 
 function exitfunction
 {
@@ -29,20 +29,20 @@ function exitfunction
 
 function readprofile0
 {	
-	echo "Reading Default Profile 0"  >> /home/pi-star/ActivateProfile.txt
+	echo "Reading Defaults"  >> /home/pi-star/ActivateProfile.txt
 
-                m1=$(sed -nr "/^\[Profile $pnum\]/ { :l /^RXOffset[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
-                m2=$(sed -nr "/^\[Profile $pnum\]/ { :l /^TXOffset[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
-                m3=$(sed -nr "/^\[Profile $pnum\]/ { :l /^RXFrequency[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
-                m4=$(sed -nr "/^\[Profile $pnum\]/ { :l /^TXFrequency[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
-                m5=$(sed -nr "/^\[Profile $pnum\]/ { :l /^Callsign[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
-                m6=$(sed -nr "/^\[Profile $pnum\]/ { :l /^Id[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
-                m7=$(sed -nr "/^\[Profile $pnum\]/ { :l /^Mode[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
-                m8=$(sed -nr "/^\[Profile $pnum\]/ { :l /^Address[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
-                m9=$(sed -nr "/^\[Profile $pnum\]/ { :l /^StartupDstId[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
-                m10=$(sed -nr "/^\[Profile $pnum\]/ { :l /^Port[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
+                m1=$(sed -nr "/^\[Profile 8\]/ { :l /^RXOffset[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
+                m2=$(sed -nr "/^\[Profile 8\]/ { :l /^TXOffset[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
+                m3=$(sed -nr "/^\[Profile 8\]/ { :l /^RXFrequency[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
+                m4=$(sed -nr "/^\[Profile 8\]/ { :l /^TXFrequency[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
+                m5=$(sed -nr "/^\[Profile 8\]/ { :l /^Callsign[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
+                m6=$(sed -nr "/^\[Profile 8\]/ { :l /^Id[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
+                m7=$(sed -nr "/^\[Profile 8\]/ { :l /^Mode[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
+                m8=$(sed -nr "/^\[Profile 8\]/ { :l /^Address[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
+                m9=$(sed -nr "/^\[Profile 8\]/ { :l /^StartupDstId[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
+                m10=$(sed -nr "/^\[Profile 8\]/ { :l /^Port[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
                 m11=$(sed -nr "/^\[Profile 0\]/ { :l /^Id[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
-                m12=$(sed -nr "/^\[Profile $pnum\]/ { :l /^Password[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
+                m12=$(sed -nr "/^\[Profile 8\]/ { :l /^Password[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
                 m13=$(sed -nr "/^\[Profile 0\]/ { :l /^ExtId[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
 	echo "Reading Default Profile 0 Complete"  >> /home/pi-star/ActivateProfile.txt
 
@@ -63,7 +63,7 @@ sudo mount -o remount,rw /
 		 sudo sed -i '/^\[/h;G;/General/s/\(Id=\).*/\1'"$m6"'/m;P;d' /etc/mmdvmhost.tmp
 		 sudo sed -i '/^\[/h;G;/DMR/s/\(Id=\).*/\1'"$m6"'/m;P;d' /etc/mmdvmhost.tmp
 	
-		echo "Processing Profile = $pnum,  Mode = $m7" >> /home/pi-star/ActivateProfile.txt	
+		echo "Processing Profile = 8,  Mode = $m7" >> /home/pi-star/ActivateProfile.txt	
 		echo "Set Defaults Complete"  >> /home/pi-star/ActivateProfile.txt
 
 }		
@@ -123,9 +123,9 @@ echo "Selection Processing Complete" >> /home/pi-star/ActivateProfile.txt
 		 sudo sed -i '/^\[/h;G;/General/s/\(^Id=\).*/\1'"$m11"'/m;P;d' /etc/mmdvmhost.tmp
 		 sudo sed -i '/^\[/h;G;/DMR/s/\(^Id=\).*/\1'"$m11"'/m;P;d' /etc/mmdvmhost.tmp
 
-echo "Processing Profile = $pnum  Mode = $m7  Ready for Reboot" >> /home/pi-star/ActivateProfile.txt
+echo "Processing Profile = 8  Mode = $m7  Ready for Reboot" >> /home/pi-star/ActivateProfile.txt
 
-#echo "Profile $pnum - Loaded  - $m7"
+#echo "Profile 8 - Loaded  - $m7"
 systemctl stop mmdvmhost
 systemctl stop mmdvmhost.timer
 sudo rm /etc/mmdvmhost
