@@ -22,22 +22,27 @@ f1=$(ls -tr /var/log/pi-star/MMDVM* | tail -1)
 MList=$(sudo sed -n '/received/p' $f1 | sed 's/,//g' | tail -1)
 MList2=$(sudo sed -n '/watchdog/p' $f1 | sed 's/,//g' | tail -1)
 
-TG1=$(echo "$MList" | head -1 | awk '{print $14}')
-TG2=$(echo "$MList" | head -1 | awk '{print $16}')
+TG=$(echo "$MList" | head -1 | awk '{print $14}')
+BER=$(echo "$MList" | head -1 | awk '{print $18}')
+
+if [ ! "$BER" == "BER" ]; then
+	BER=$(echo "$MList" | head -1 | awk '{print $23}')
+fi
+
 
 Modes=$(echo "$MList" | head -1 | awk '{print $8}')
 
 if [ "$Modes" == "network" ]; then
 	Modes="Net"
 fi
-if [ "$TG1" == "TG" ]; then
-  mode="$Modes""1"
-elif [ "$TG2" == "TG" ]; then
-  mode="$Modes""2"
-fi
-if [ "$TOList" ]; then
+if [ "$TG" == "TG" ]; then
+  	mode="$Modes""1"
+elif [ "$BER" == "BER:" ]; then
+  	mode="$Modes""2"
+elif [ "$TOList" ]; then
   mode="Net3"
 fi
+
 list3=$(echo "$MList" | head -1 | awk '{print substr($2,6,5),substr($3,0,6),$12,$15}')
 list4=$(echo "$MList" | tail -1 | awk '{print substr($2,6,5),substr($3,0,6),$14,$6,$17,$18,$20,$21,$23}')
 TOList=$(echo "$MList2" | tail -1 | awk '{print substr($2,6,5),substr($3,0,6),$11,$13}')
