@@ -6,6 +6,5 @@
 set -o errexit
 set -o pipefail
 sudo mount -o remount,rw /
-
-wget https://radioid.net/static/user.csv
-
+rm user.csv
+wget https://database.radioid.net/static/user.csv

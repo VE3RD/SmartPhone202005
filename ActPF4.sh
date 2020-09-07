@@ -67,18 +67,32 @@ function readprofile0
                 m13=$(sed -nr "/^\[Profile 0\]/ { :l /^ExtId[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" $fromfile)
 	echo "Reading Default Profile 0 Complete"  >> /home/pi-star/ActivateProfile.txt
 
-if [ "$m12" = "file" ]; then
-  m12=$(sed -nr "/^\[Passwords\]/ { :l /^MNet3023954[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}"  /home/pi-star/SPass.txt)
-  m11="$m6"
-  m13=302095414
+if [ "$m7" == "Prime3020733" ]; then
+
+  m12=$(sed -nr "/^\[Passwords\]/ { :l /^Prime3020733[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}"  /home/pi-star/SPass.txt)
 fi
+
+if [ "$m7" == "Prime3023954" ]; then
+
+  m12=$(sed -nr "/^\[Passwords\]/ { :l /^Prime3023954[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}"  /home/pi-star/SPass.txt)
+fi
+
+if [ "$m12" = "file" ]; then
+
+  m12=$(sed -nr "/^\[Passwords\]/ { :l /^MNet3023954[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}"  /home/pi-star/SPass.txt)
+
+fi
+
+}
+
 #DisplayProfile
 #	mt=$(sudo sed -n '/^[^#]*'"$m8"'/p' /usr/local/etc/DMR_Hosts.txt | sed -E "s/[[:space:]]+/|/g")
 #       	mt=$(sudo sed -n "/\t$m8/p" /usr/local/etc/DMR_Hosts.txt |sed -E "s/[[:space:]]+/|/g")
 #	m8=$( echo "$mt" | cut -d'|' -f3)
-	echo "Processing Profile 0 m8 Address  = $m8  Complete"  >> /home/pi-star/ActivateProfile.txt
 
-}
+#	echo "Processing Profile 0 m8 Address  = $m8  Complete"  >> /home/pi-star/ActivateProfile.txt
+
+
 
 function setdefaults
 {	
