@@ -1,7 +1,7 @@
 # SmartPhone
 Scripts to Run on Pi-Star for Smart Phone Control
 
-These are the scripts that are triggered by my snart phone app to monitor and control Pi-Star
+These are the scripts that are triggered by my smart phone app to monitor and control Pi-Star
 
 Features
 -10 Profiles ( 3 Tested and Working, 1 - TGIF, 2 - New TGIF)
