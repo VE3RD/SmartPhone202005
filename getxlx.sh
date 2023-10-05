@@ -14,7 +14,7 @@ set -o pipefail
   n3=$(sed -nr "/^\[XLX Network\]/ { :l /^Module[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" /etc/dmrgateway)
 
 
-  echo "$n1|$n2|$n3"
+  echo "$n1 $n2 n3"
 
 
 
