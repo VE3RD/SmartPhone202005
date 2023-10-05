@@ -1,0 +1,26 @@
+#!/bin/bash
+############################################################
+#  Change Set XLX Reflector and Module                     #
+#                                                          #
+#  					                   #
+#  Also Reset DMRGateway	                           #
+#  KF6S                                        09-14-2019  #
+############################################################
+set -o errexit
+set -o pipefail
+
+# Param 1 is Reflector
+# Param 2 is Module
+
+
+if [ -z "$2" ]; then
+        exit
+else
+
+	sudo sed -i '/^\[/h;G;/\[XLX Network/s/\(Enable=\).*/\11/m;P;d' /etc/dmrgateway
+	sudo sed -i '/^\[/h;G;/\[XLX Network/s/\(Startup=\).*/\1'"$1"'/m;P;d' /etc/dmrgateway
+	sudo sed -i '/^\[/h;G;/\[XLX Network/s/\(Module=\).*/\1'"$2"'/m;P;d' /etc/dmrgateway
+
+	# sudo sed -i '/^\[/h;G;/\[NXDN Network/s/\(Enable=\).*/\1'"$en"'/m;P;d' /etc/mmdvmhost
+	dmrgateway.sevice restart
+fi;
